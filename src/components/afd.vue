@@ -26,16 +26,8 @@
 #afdian:hover path {
     stroke: #946CE6;
 }
-#stop-1 #stop-2 {
-    stop-color: #000;
-}
-.eye {
-    fill: #000;
-}
-#afdian path {
-    stroke: #000;
-    stroke-width: 4px; /*Between 1px and 2px*/
-}
+
+
 #afdian:hover .eye{
     fill: #946CE6;
 }
@@ -45,4 +37,16 @@
 #afdian:hover #stop-2 {
     stop-color: #885FD9;
 }
+
+#stop-1 #stop-2 {
+    stop-color: var(--afd-color);
+}
+.eye {
+    fill: var(--afd-color);
+}
+#afdian path {
+    stroke: var(--afd-color);
+    stroke-width: 4px; /*Between 1px and 2px*/
+}
+
 </style>

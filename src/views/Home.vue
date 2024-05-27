@@ -4,6 +4,27 @@ import { ref } from 'vue';
 import axios from 'axios';
 import afdianVue from "../components/afd.vue"
 
+// 获取系统主题，判断是否为暗黑模式
+const getTheme = () => {
+  let theme = "light"
+  if (localStorage.getItem("theme")) {
+    if (localStorage.getItem("theme") === "dark") {
+      theme = "dark";
+    }
+  } else if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      //OS theme setting detected as dark
+      theme = "dark";
+  }
+  if (theme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+  return theme;
+}
+
+const theme = ref(getTheme());
+
 const repos = ref("获取中...");
 const posts = ref("获取中...");
 
@@ -39,10 +60,24 @@ getPosts().then(res => {
   console.log(err);
 })
 
-
+const switch_theme = () => {
+  if (theme.value === "light") {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark");
+    theme.value = "dark";
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
+    theme.value = "light";
+  }
+}
 </script>
 
 <template>
+  <div class="theme-switch" @click="switch_theme">
+    <i class="ri-sun-line" v-if="theme == 'dark'"></i>
+    <i class="ri-moon-line" v-else></i>
+  </div>
   <div class="container">
     <div class="space"></div>
     <div class="img">
@@ -97,6 +132,21 @@ getPosts().then(res => {
 </template>
 
 <style lang="scss" scoped>
+.theme-switch {
+  position: fixed;
+  top: calc(1vh + 0.5rem);
+  right: calc(1vw + 0.5rem);
+  z-index: 999;
+  cursor: pointer;
+  transition: all .3s ease;
+  i {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+  i:hover {
+    color: #79b0e0;
+  }
+}
 .footer {
   position: absolute;
   bottom: 0;
@@ -130,7 +180,7 @@ getPosts().then(res => {
       font-weight: normal;
       line-height: 60%;
       font-size: 1.05rem;
-      color: #666;
+      color: var(--content-color);
       white-space: nowrap;
     }
   }
@@ -150,7 +200,7 @@ getPosts().then(res => {
     
     a {
       margin-right: .7rem;
-      color: #000;
+      color: var(--content-color);
       display: flex;
       align-items: center;
     }
@@ -214,8 +264,18 @@ getPosts().then(res => {
 }
 
 
+[data-theme="dark"] {
+  .img {
+    box-shadow: inset 0px 0px 0px 9px rgb(36 36 36 / 30%);
+  }
+}
+[data-theme="light"] {
+  .img {
+    box-shadow: inset 0px 0px 0px 9px rgb(255 255 255 / 30%);
+  }
+}
+
 .img {
-  box-shadow: inset 0px 0px 0px 9px rgb(255 255 255 / 30%);
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   // background-image: url(https://image.im0o.top/files/202112021204213.jpg);
   background-image: url(/avatar.png);
