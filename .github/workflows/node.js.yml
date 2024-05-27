@@ -31,6 +31,8 @@ jobs:
       # 执行npm脚本打包项目
       - name: Install and Build
         uses: pnpm/action-setup@v3
+        with:
+          version: 8
       
       # 执行JamesIves/github-pages-deploy-action将项目发布到Github Pages
       - name: Deploy
