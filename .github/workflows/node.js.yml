@@ -29,10 +29,15 @@ jobs:
           persist-credentials: false
 
       # 执行npm脚本打包项目
-      - name: Install and Build
+      - name: pnpm-setup
         uses: pnpm/action-setup@v3
         with:
           version: 8
+
+      - name: Install
+        run: pnpm install
+      - name: Build
+        run: pnpm run build
       
       # 执行JamesIves/github-pages-deploy-action将项目发布到Github Pages
       - name: Deploy
