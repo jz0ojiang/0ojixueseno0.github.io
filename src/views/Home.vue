@@ -114,7 +114,8 @@ const switch_theme = () => {
         <a href="https://afdian.net/@jz0ojiang" title="afdian" v-if="isCn">
           <afdianVue />
         </a>
-        <a href="https://afdian.net/@qiochan" title="afdian" v-else>
+        <!-- <a href="https://afdian.net/@qiochan" title="afdian" v-else> -->
+        <a href="https://afdian.net/@jz0ojiang" title="afdian" v-else>
           <afdianVue />
         </a>
         <a href="https://blog.im0o.cn" class="toblog" v-if="isCn">看看博客 >></a>
@@ -285,7 +286,7 @@ const switch_theme = () => {
 
   background-size: contain;
   background-repeat: no-repeat;
-  
+
   will-change: border-radius;
   transform: translateZ(0);
   outline: 1px solid transparent;
