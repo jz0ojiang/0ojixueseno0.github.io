@@ -285,6 +285,10 @@ const switch_theme = () => {
 
   background-size: contain;
   background-repeat: no-repeat;
+  
+  will-change: border-radius;
+  transform: translateZ(0);
+  outline: 1px solid transparent;
 
   -webkit-animation: morph 8s ease-in-out 1s infinite;
   animation: morph 8s ease-in-out 1s infinite;
