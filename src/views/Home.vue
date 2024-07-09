@@ -90,7 +90,7 @@ const switch_theme = () => {
       <div class="desc">
         <p>互联网爱好者，从 2010 年开始接触计算机</p>
         <p>比较没有主见的福瑞控，设定是 🐕柴犬+🦊狐狸</p>
-        <p>web 全栈大菜狗 | Vue.js | Go | Python</p>
+        <p>web 全栈工程师 | Vue.js | Go | Python</p>
         <p>已发表文章： {{ posts }}</p>
         <p>开源仓库数： {{ repos }}</p>
       </div>
